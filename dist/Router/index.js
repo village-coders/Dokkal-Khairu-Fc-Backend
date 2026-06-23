@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authRoutes_1 = __importDefault(require("./authRoutes"));
+const newsRoutes_1 = __importDefault(require("./newsRoutes"));
+const matchRoutes_1 = __importDefault(require("./matchRoutes"));
+const playerRoutes_1 = __importDefault(require("./playerRoutes"));
+const galleryRoutes_1 = __importDefault(require("./galleryRoutes"));
+const uploadRoutes_1 = __importDefault(require("./uploadRoutes"));
+const router = (0, express_1.Router)();
+router.use("/auth", authRoutes_1.default);
+router.use("/news", newsRoutes_1.default);
+router.use("/matches", matchRoutes_1.default);
+router.use("/players", playerRoutes_1.default);
+router.use("/gallery", galleryRoutes_1.default);
+router.use("/upload", uploadRoutes_1.default);
+exports.default = router;

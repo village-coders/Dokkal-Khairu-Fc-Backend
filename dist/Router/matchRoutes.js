@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const matchController_1 = require("../controllers/matchController");
+const auth_1 = require("../Middlewares/auth");
+const router = (0, express_1.Router)();
+router.get("/", matchController_1.getMatches);
+router.post("/", auth_1.verifyAdminToken, matchController_1.createMatch);
+router.put("/:id", auth_1.verifyAdminToken, matchController_1.updateMatch);
+router.put("/:id/score", auth_1.verifyAdminToken, matchController_1.updateMatchScore);
+router.delete("/:id", auth_1.verifyAdminToken, matchController_1.deleteMatch);
+exports.default = router;
