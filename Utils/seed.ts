@@ -188,35 +188,37 @@ export async function seedDataIfEmpty() {
       console.log("Successfully seeded matches.");
     }
 
-    // Force reset players and gallery for the re-seed
-    await Player.deleteMany({});
-    await GalleryItem.deleteMany({});
-
-    console.log("Seeding full players list...");
-    const players = [
-      { name: "OLUSEGUN ADERIBIGBE", number: 1, position: "GOALKEEPER", nationality: "Nigeria", appearances: 42, cleanSheets: 15, goals: 0, assists: 0, imageUrl: "/squad/gk-1.jpg" },
-      { name: "CHIDI OKAFOR", number: 4, position: "DEFENDER", nationality: "Nigeria", appearances: 38, cleanSheets: 12, goals: 3, assists: 1, imageUrl: "/squad/def-1.jpg" },
-      { name: "TUNDE BAKARE", number: 5, position: "DEFENDER", nationality: "Nigeria", appearances: 35, cleanSheets: 10, goals: 1, assists: 2, imageUrl: "/squad/def-2.jpg" },
-      { name: "MUSA IBRAHIM", number: 8, position: "MIDFIELDER", nationality: "Nigeria", appearances: 40, cleanSheets: 0, goals: 7, assists: 14, imageUrl: "/squad/mid-1.jpg" },
-      { name: "EMMANUEL EZE", number: 10, position: "MIDFIELDER", nationality: "Nigeria", appearances: 39, cleanSheets: 0, goals: 12, assists: 18, imageUrl: "/squad/mid-2.jpg" },
-      { name: "AYO BALOGUN", number: 9, position: "FORWARD", nationality: "Nigeria", appearances: 41, cleanSheets: 0, goals: 22, assists: 6, imageUrl: "/squad/fwd-1.jpg" },
-      { name: "KOLAWOLE JOHNSON", number: 11, position: "FORWARD", nationality: "Nigeria", appearances: 37, cleanSheets: 0, goals: 15, assists: 9, imageUrl: "/squad/fwd-2.jpg" },
-      { name: "VICTOR ADAMS", number: 7, position: "FORWARD", nationality: "Nigeria", appearances: 30, cleanSheets: 0, goals: 8, assists: 12, imageUrl: "/squad/fwd-3.jpg" },
+    const playersCount = await Player.countDocuments();
+    if (playersCount === 0) {
+      console.log("Seeding full players list...");
+      const players = [
+      { name: "OLUSEGUN ADERIBIGBE", number: 1, position: "GOALKEEPER", nationality: "Nigeria", appearances: 42, cleanSheets: 15, goals: 0, assists: 0, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "CHIDI OKAFOR", number: 4, position: "DEFENDER", nationality: "Nigeria", appearances: 38, cleanSheets: 12, goals: 3, assists: 1, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "TUNDE BAKARE", number: 5, position: "DEFENDER", nationality: "Nigeria", appearances: 35, cleanSheets: 10, goals: 1, assists: 2, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "MUSA IBRAHIM", number: 8, position: "MIDFIELDER", nationality: "Nigeria", appearances: 40, cleanSheets: 0, goals: 7, assists: 14, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "EMMANUEL EZE", number: 10, position: "MIDFIELDER", nationality: "Nigeria", appearances: 39, cleanSheets: 0, goals: 12, assists: 18, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "AYO BALOGUN", number: 9, position: "FORWARD", nationality: "Nigeria", appearances: 41, cleanSheets: 0, goals: 22, assists: 6, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "KOLAWOLE JOHNSON", number: 11, position: "FORWARD", nationality: "Nigeria", appearances: 37, cleanSheets: 0, goals: 15, assists: 9, imageUrl: "https://res.cloudinary.com/dlwdq32ki/image/upload/v1782292188/dokkal_khairu_fc/oohlgayyvjh8muhlhicf.jpg" },
+      { name: "VICTOR ADAMS", number: 7, position: "FORWARD", nationality: "Nigeria", appearances: 30, cleanSheets: 0, goals: 8, assists: 12, imageUrl: "" },
     ];
-    await Player.insertMany(players as any[]);
-    console.log("Successfully seeded players.");
+      await Player.insertMany(players as any[]);
+      console.log("Successfully seeded players.");
+    }
 
-    console.log("Seeding full gallery items...");
-    const items = [
-      { title: 'Goal Celebration vs Sunshine Stars', category: 'Match Action', imageUrl: '/gallery/action-1.jpg', type: 'image', date: new Date() },
-      { title: 'Pre-season Conditioning', category: 'Training', imageUrl: '/gallery/training-1.jpg', type: 'image', date: new Date() },
-      { title: 'Derby Day Highlights', category: 'Match Action', imageUrl: '/gallery/action-2.jpg', type: 'video', date: new Date() },
-      { title: 'The Khairu Faithfuls', category: 'Fans', imageUrl: '/gallery/fans-1.jpg', type: 'image', date: new Date() },
-      { title: 'Tactical Setup', category: 'Training', imageUrl: '/gallery/training-2.jpg', type: 'image', date: new Date() },
-      { title: 'Crucial Save', category: 'Match Action', imageUrl: '/gallery/action-3.jpg', type: 'image', date: new Date() },
+    const galleryCount = await GalleryItem.countDocuments();
+    if (galleryCount === 0) {
+      console.log("Seeding full gallery items...");
+      const items = [
+      { title: 'Goal Celebration vs Sunshine Stars', category: 'Match Action', imageUrl: '', type: 'image', date: new Date() },
+      { title: 'Pre-season Conditioning', category: 'Training', imageUrl: '', type: 'image', date: new Date() },
+      { title: 'Derby Day Highlights', category: 'Match Action', imageUrl: '', type: 'video', date: new Date() },
+      { title: 'The Khairu Faithfuls', category: 'Fans', imageUrl: '', type: 'image', date: new Date() },
+      { title: 'Tactical Setup', category: 'Training', imageUrl: '', type: 'image', date: new Date() },
+      { title: 'Crucial Save', category: 'Match Action', imageUrl: '', type: 'image', date: new Date() },
     ];
-    await GalleryItem.insertMany(items as any[]);
-    console.log("Successfully seeded gallery items.");
+      await GalleryItem.insertMany(items as any[]);
+      console.log("Successfully seeded gallery items.");
+    }
   } catch (err) {
     console.error("Error seeding initial data:", err);
   }
