@@ -29,7 +29,8 @@ export async function createMatch(req: Request, res: Response) {
       competition,
       status = "upcoming",
       matchweek,
-      highlights
+      highlights,
+      countdownBanner
     } = req.body;
 
     if (!homeTeamName || !awayTeamName || !venue || !matchDate || !competition) {
@@ -52,7 +53,8 @@ export async function createMatch(req: Request, res: Response) {
       competition,
       status,
       matchweek: matchweek ? parseInt(matchweek.toString()) : undefined,
-      highlights
+      highlights,
+      countdownBanner
     });
 
     return res.status(201).json(newMatch);
@@ -75,6 +77,7 @@ export async function updateMatch(req: Request, res: Response) {
       status,
       matchweek,
       highlights,
+      countdownBanner,
       homeScore,
       awayScore
     } = req.body;
@@ -96,6 +99,7 @@ export async function updateMatch(req: Request, res: Response) {
       match.matchweek = matchweek ? parseInt(matchweek.toString()) : undefined;
     }
     if (highlights !== undefined) match.highlights = highlights;
+    if (countdownBanner !== undefined) match.countdownBanner = countdownBanner;
     
     if (homeScore !== undefined) {
       match.homeScore = (homeScore !== "" && homeScore !== null && homeScore !== undefined) ? parseInt(homeScore.toString()) : null;
