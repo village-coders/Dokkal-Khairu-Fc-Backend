@@ -9,7 +9,11 @@ export async function connectDB() {
     }
     
     console.log("Connecting to MongoDB...");
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 30000,
+      bufferCommands: false,
+    });
     console.log("MongoDB connected successfully.");
     
     // Seed default admin if empty
