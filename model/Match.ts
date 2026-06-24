@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface IMatch extends Document {
   homeTeam: {
@@ -23,6 +23,7 @@ export interface IMatch extends Document {
   status: 'upcoming' | 'live' | 'completed';
   matchweek?: number;
   highlights?: string;
+  countdownBanner?: string;
   createdAt: Date;
 }
 
@@ -54,9 +55,10 @@ const MatchSchema: Schema = new Schema(
       default: 'upcoming'
     },
     matchweek: { type: Number },
-    highlights: { type: String }
+    highlights: { type: String },
+    countdownBanner: { type: String }
   },
   { timestamps: { createdAt: true, updatedAt: false } }
 );
 
-export const Match = mongoose.models.Match || mongoose.model<IMatch>("Match", MatchSchema);
+export const Match: Model<IMatch> = (mongoose.models.Match as Model<IMatch>) || mongoose.model<IMatch>("Match", MatchSchema);

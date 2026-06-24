@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "start": "node dist/server.js",
-    "build": "tsc || echo Build errors ignored",
+    "build": "tsc",
     "seed": "tsx runSeed.ts"
   },
   "dependencies": {

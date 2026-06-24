@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface IAdmin extends Document {
   username: string;
@@ -13,4 +13,4 @@ const AdminSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export const Admin = mongoose.models.Admin || mongoose.model<IAdmin>("Admin", AdminSchema);
+export const Admin: Model<IAdmin> = (mongoose.models.Admin as Model<IAdmin>) || mongoose.model<IAdmin>("Admin", AdminSchema);

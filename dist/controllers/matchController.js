@@ -22,7 +22,7 @@ async function getMatches(req, res) {
 }
 async function createMatch(req, res) {
     try {
-        const { homeTeamName, homeTeamLogoUrl, awayTeamName, awayTeamLogoUrl, venue, matchDate, competition, status = "upcoming", matchweek, highlights } = req.body;
+        const { homeTeamName, homeTeamLogoUrl, awayTeamName, awayTeamLogoUrl, venue, matchDate, competition, status = "upcoming", matchweek, highlights, countdownBanner } = req.body;
         if (!homeTeamName || !awayTeamName || !venue || !matchDate || !competition) {
             return res.status(400).json({ error: "Please fill all required match details." });
         }
@@ -42,7 +42,8 @@ async function createMatch(req, res) {
             competition,
             status,
             matchweek: matchweek ? parseInt(matchweek.toString()) : undefined,
-            highlights
+            highlights,
+            countdownBanner
         });
         return res.status(201).json(newMatch);
     }
@@ -53,7 +54,7 @@ async function createMatch(req, res) {
 async function updateMatch(req, res) {
     try {
         const { id } = req.params;
-        const { homeTeamName, homeTeamLogoUrl, awayTeamName, awayTeamLogoUrl, venue, matchDate, competition, status, matchweek, highlights, homeScore, awayScore } = req.body;
+        const { homeTeamName, homeTeamLogoUrl, awayTeamName, awayTeamLogoUrl, venue, matchDate, competition, status, matchweek, highlights, countdownBanner, homeScore, awayScore } = req.body;
         const match = await Match_1.Match.findById(id);
         if (!match) {
             return res.status(404).json({ error: "Match not found." });
@@ -79,6 +80,8 @@ async function updateMatch(req, res) {
         }
         if (highlights !== undefined)
             match.highlights = highlights;
+        if (countdownBanner !== undefined)
+            match.countdownBanner = countdownBanner;
         if (homeScore !== undefined) {
             match.homeScore = (homeScore !== "" && homeScore !== null && homeScore !== undefined) ? parseInt(homeScore.toString()) : null;
         }

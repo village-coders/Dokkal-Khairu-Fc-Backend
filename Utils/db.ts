@@ -30,7 +30,7 @@ async function seedDefaultAdmin() {
     if (count === 0) {
       const bcrypt = await import("bcryptjs");
       const defaultHash = (bcrypt.default || bcrypt).hashSync("password123", 10);
-      await Admin.create({
+      await (Admin.create as any)({
         username: "admin",
         passwordHash: defaultHash
       });

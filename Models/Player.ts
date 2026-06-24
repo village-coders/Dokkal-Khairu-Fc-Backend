@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface IPlayer extends Document {
   name: string;
@@ -25,4 +25,4 @@ const PlayerSchema = new Schema<IPlayer>({
   imageUrl: { type: String, default: "" }
 }, { timestamps: true });
 
-export const Player = mongoose.models.Player || mongoose.model<IPlayer>('Player', PlayerSchema);
+export const Player: Model<IPlayer> = (mongoose.models.Player as Model<IPlayer>) || mongoose.model<IPlayer>('Player', PlayerSchema);

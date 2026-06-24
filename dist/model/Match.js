@@ -62,6 +62,7 @@ const MatchSchema = new mongoose_1.Schema({
         default: 'upcoming'
     },
     matchweek: { type: Number },
-    highlights: { type: String }
+    highlights: { type: String },
+    countdownBanner: { type: String }
 }, { timestamps: { createdAt: true, updatedAt: false } });
 exports.Match = mongoose_1.default.models.Match || mongoose_1.default.model("Match", MatchSchema);

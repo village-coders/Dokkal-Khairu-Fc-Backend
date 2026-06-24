@@ -88,7 +88,7 @@ export async function seedDataIfEmpty() {
           views: 95
         }
       ];
-      await News.insertMany(newsArticles);
+      await News.insertMany(newsArticles as any[]);
       console.log("Successfully seeded news articles.");
     }
 
@@ -184,7 +184,7 @@ export async function seedDataIfEmpty() {
           matchweek: 9
         }
       ];
-      await Match.insertMany(matches);
+      await Match.insertMany(matches as any[]);
       console.log("Successfully seeded matches.");
     }
 
@@ -203,7 +203,7 @@ export async function seedDataIfEmpty() {
       { name: "KOLAWOLE JOHNSON", number: 11, position: "FORWARD", nationality: "Nigeria", appearances: 37, cleanSheets: 0, goals: 15, assists: 9, imageUrl: "/squad/fwd-2.jpg" },
       { name: "VICTOR ADAMS", number: 7, position: "FORWARD", nationality: "Nigeria", appearances: 30, cleanSheets: 0, goals: 8, assists: 12, imageUrl: "/squad/fwd-3.jpg" },
     ];
-    await Player.insertMany(players);
+    await Player.insertMany(players as any[]);
     console.log("Successfully seeded players.");
 
     console.log("Seeding full gallery items...");
@@ -215,7 +215,7 @@ export async function seedDataIfEmpty() {
       { title: 'Tactical Setup', category: 'Training', imageUrl: '/gallery/training-2.jpg', type: 'image', date: new Date() },
       { title: 'Crucial Save', category: 'Match Action', imageUrl: '/gallery/action-3.jpg', type: 'image', date: new Date() },
     ];
-    await GalleryItem.insertMany(items);
+    await GalleryItem.insertMany(items as any[]);
     console.log("Successfully seeded gallery items.");
   } catch (err) {
     console.error("Error seeding initial data:", err);

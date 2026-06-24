@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface IGalleryItem extends Document {
   title: string;
@@ -17,4 +17,4 @@ const GalleryItemSchema = new Schema<IGalleryItem>({
   date: { type: Date, required: true }
 }, { timestamps: true });
 
-export const GalleryItem = mongoose.models.GalleryItem || mongoose.model<IGalleryItem>('GalleryItem', GalleryItemSchema);
+export const GalleryItem: Model<IGalleryItem> = (mongoose.models.GalleryItem as Model<IGalleryItem>) || mongoose.model<IGalleryItem>('GalleryItem', GalleryItemSchema);
