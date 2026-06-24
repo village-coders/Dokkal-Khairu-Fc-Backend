@@ -17,10 +17,10 @@ export async function connectDB() {
     console.log("MongoDB connected successfully.");
     
     // Seed default admin if empty
-    await seedDefaultAdmin();
+    // await seedDefaultAdmin();
     
     // Seed initial news and matches if empty
-    await seedDataIfEmpty();
+    // await seedDataIfEmpty();
   } catch (err) {
     console.error("MongoDB connection error:", err);
   }
